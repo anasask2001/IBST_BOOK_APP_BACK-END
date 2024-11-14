@@ -1,32 +1,33 @@
-"use strict";
 import mongoose from "mongoose";
-const book_schema = mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
+
+const bookSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    author: {
+      type: String,
+      trim: true,
+      required: true,  
+    },
+    description: {
+      type: String,
+      required: true,
+      minlength: 20,
+      maxlength: 1000,
+    },
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
   },
-  author: {
-    type: String,
-    trim: true,
-    unique: true,
-  },
-  description: {
-    type: String,
-    required: true,
-    minlength: 20,
-    maxlength: 1000,
-  },
-  isActive:{
-    type:Boolean,
-    default: true
-  },
-},
-{
-    timestamps: true,
+  {
+    timestamps: true,  
   }
 );
 
 
-const Books = mongoose.model("Books", book_schema);
+const Books = mongoose.model("Books", bookSchema);
 
-export  { Books };
+export { Books };
